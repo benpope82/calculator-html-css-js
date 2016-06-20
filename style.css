@@ -54,17 +54,31 @@ footer a:hover{
 
 body{
   font-size: 17px;
+  background-color: #5260de;
+  background-image:
+    linear-gradient(
+      #2d80e0, #5260de
+      );
 }
 
 .calculator{
-  width: 350px;
+  width: 275px;
   margin: 0 auto;
   margin-top: 10px;
   padding: 20px;
-  background-color: #a0a9a4;
-  /* try gradient from: #eaebed to: #a0a9a4*/
+  background-color: #a0a9a4; /* fall-back for older browsers */
+  /* Wen supported gradient top to bottom, #eaebed > #a0a9a4*/
+  background-image:
+    linear-gradient(
+      #eaebed, #a0a9a4 150px
+    );
   border: 1px solid #3d4749;
   border-radius: 20px;
+
+  -webkit-box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+  -moz-box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+  box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+
 }
 .display{
   font-size: 2em;
@@ -88,6 +102,10 @@ body{
   border: 1px solid #010101;
   color: #fafafc;
   background-color: #555b59;
+  background-image: 
+    linear-gradient(
+      #fafafc, #555b59 2px
+    );
 }
 
 .button:hover, 
@@ -95,14 +113,23 @@ body{
   cursor: pointer;
 }
 
-.large{
-  width: 116px;
+.two-columns{
+  width: 110px;
 }
 
 .operator {
   background-color: #98a19e;
+  background-image: none;
+  background-image: 
+    linear-gradient(
+      #fafafc, #98a19e 4px
+    );
 }
 
 .clear {
   background-color: #ad3235;
+  background-image: 
+    linear-gradient(
+      #fafafc, #ad3235 4px
+    );
 }
