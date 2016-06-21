@@ -54,7 +54,7 @@ footer a:hover{
 
 body{
   font-size: 17px;
-  background-color: #5260de;
+  background-color: #5160DE;
   background-image:
     linear-gradient(
       #2d80e0, #5260de
@@ -107,15 +107,37 @@ body{
     );
 }
 
-#display{
-  font-size: 2em;
-  line-height: 1.5em;
-  text-align: right;
+.display-window{
   margin: 0px 0px 10px 0px;
   padding: 0 10px;
   color: #3d4749;
   background-color: #89957d;
   border: 1px solid #010101;
+  text-align: right;
+}
+
+#main-display{
+  font-size: 1.5em;
+  overflow: hidden;
+}
+
+#digit-overflow{
+  font-size: .9em;
+  margin: 5px 0px 0px -2px;
+  display: inline-block;
+  float: left;
+}
+
+#sub-display{
+  display: inline-block;
+  margin: 5px 0px -5px 0px;
+  width: 202px;
+  height: 15px;
+  font-size: .75em;
+  text-overflow: ellipsis;
+  direction: ltr;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
   overflow: hidden;
 }
 
