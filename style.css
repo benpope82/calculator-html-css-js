@@ -107,37 +107,14 @@ body{
     );
 }
 
-.display-window{
+#display{
   margin: 0px 0px 10px 0px;
   padding: 0 10px;
   color: #3d4749;
   background-color: #89957d;
   border: 1px solid #010101;
   text-align: right;
-}
-
-#main-display{
   font-size: 1.5em;
-  overflow: hidden;
-}
-
-#digit-overflow{
-  font-size: .9em;
-  margin: 5px 0px 0px -2px;
-  display: inline-block;
-  float: left;
-}
-
-#sub-display{
-  display: inline-block;
-  margin: 5px 0px -5px 0px;
-  width: 202px;
-  height: 15px;
-  font-size: .75em;
-  text-overflow: ellipsis;
-  direction: ltr;
-  /* Required for text-overflow to do anything */
-  white-space: nowrap;
   overflow: hidden;
 }
 
