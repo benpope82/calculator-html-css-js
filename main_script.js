@@ -1,30 +1,77 @@
 // Javascript
 
-var sub_display = '';
-
+var MAX_DIGITS = '20';
 
 $( document ).ready(function() {
 
 });
 
-// next step assign an element to a var, so it works easier in the code 
-// var display = $('.display').html();
-	var display = document.getElementById('display');
-	console.log(display);
+var display = document.getElementById('display');
+console.log(display);
 $('.button').on("click", function(e) {
 	var value = e.currentTarget.textContent;
-	switch (value) {
-		case 'AC': document.getElementById('display').textContent = '0';
-		break;
-		case '1' : alert();
-		break;
-		default : document.getElementById('display').textContent += e.currentTarget.textContent;
-	}
-	console.log(e.currentTarget.textContent);
-	
+	validate_input(value);
 });
 
+var validate_input = function(val){
+	
+	// when valid
+	switch (val) {
+		case '+': ac();
+		break;
+		case '-': ac();
+		break;
+		case '&#xd7;': multiply();
+		break;
+		case '&divide': divide();
+		break;
+		case '+/-': plus_minus();
+		break;
+		case 'AC': ac();
+		break;
+		case 'C/CE': cce();
+		break;
+		case '=': calculate();
+		break;
+		default: update_display(val);
+	}
+}
 
+var add = function(){
+
+}
+
+var subtract = function(){
+
+}
+
+var multiply = function(){
+
+}
+
+var divide = function(){
+
+}
+
+var minus_plus = function(){
+
+}
+
+var ac = function() {
+	document.getElementById('display').textContent = '0';
+}
+
+var cce = function() {
+	// take the last input from the screen and clear it
+}
+
+var calulate = function(){
+
+}
+
+var update_display = function(val) {
+	document.getElementById('display').textContent += val;
+}
 
 /*
 workings of the app
