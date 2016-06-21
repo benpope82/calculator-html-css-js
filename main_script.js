@@ -1,45 +1,59 @@
 // Javascript
 
-var MAX_DIGITS = '20';
+var Calc = function(){
+// global vars
+	var MAX_DIGITS = '20';	
+	var validated;
+	var current_screen = document.getElementById('display').textContent;
+	var input = '';
 
-$( document ).ready(function() {
+// functions
+	this.add = function(add){
+		
+	}	
 
-});
+	this.valid_input = function(val){
+		if ( current_screen.length < MAX_DIGITS ) return true;
+		// when valid
+	}
+	this.display = function(value){
+		document.getElementById('display').textContent += value;
+	}
 
-var display = document.getElementById('display');
-console.log(display);
-$('.button').on("click", function(e) {
-	var value = e.currentTarget.textContent;
-	validate_input(value);
-});
-
-var validate_input = function(val){
-	
-	// when valid
-	switch (val) {
-		case '+': ac();
-		break;
-		case '-': ac();
-		break;
-		case '&#xd7;': multiply();
-		break;
-		case '&divide': divide();
-		break;
-		case '+/-': plus_minus();
-		break;
-		case 'AC': ac();
-		break;
-		case 'C/CE': cce();
-		break;
-		case '=': calculate();
-		break;
-		default: update_display(val);
+	this.handle_input = function(val){
+		console.log(val);
+		switch (val) {
+			case '+': if (this.valid_input(val)) this.add();
+			break;
+			case '-': subtract();
+			break;
+			case '&#xd7;': multiply();
+			break;
+			case '&divide': divide();
+			break;
+			case '+/-': plus_minus();
+			break;
+			case 'AC': ac();
+			break;
+			case 'C/CE': cce();
+			break;
+			case '=': calculate();
+			break;
+			default: calc.display(val);
+		}
 	}
 }
 
-var add = function(){
+var calc = new Calc();
 
-}
+$('.button').on("click", function(e) {
+	var pressed = e.currentTarget.textContent;
+	calc.handle_input(pressed);
+});
+
+
+
+
 
 var subtract = function(){
 
@@ -53,24 +67,20 @@ var divide = function(){
 
 }
 
-var minus_plus = function(){
+var plus_minus = function(){
 
 }
 
 var ac = function() {
-	document.getElementById('display').textContent = '0';
+	calc.display('0');
 }
 
 var cce = function() {
 	// take the last input from the screen and clear it
 }
 
-var calulate = function(){
+var calculate = function(){
 
-}
-
-var update_display = function(val) {
-	document.getElementById('display').textContent += val;
 }
 
 /*
