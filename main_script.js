@@ -1,9 +1,12 @@
 // Javascript
 
 // global vars
-var MAX_DIGITS = '19';	
-var currentScreen = '';
-var currentNumber = '';
+var MAX_DIGITS = 19;		// number
+var multiOps = [];			// collection of numbers and operators
+var currentScreen = '';		// string
+var currentNumber = 0;		// number value
+var firstValue = 0;			// number value
+var secondValue = 0;		// number value
 
 // functions
 $('.button').on("click", function(e) {
@@ -37,26 +40,26 @@ var handleInput = function(val){
 	}
 }
 
-var validOperator = function(){
+var validOperator = function(operator){
 	console.log('valid operator');
 	// operator can only be added when there is are two spaces left
 	// one of the operator the other for a number
 	if ( currentScreen.length == (MAX_DIGITS-2) ) return false
-
+	multiOps.push(Number(currentNumber), operator);
 	currentNumber = '';
 	return true;
 }
 
 var validNumber = function(val){
-	console.log('valid number');
+	console.log('valid number', currentScreen.length);
 	// remove the inital 0
 	if ( document.getElementById('display').textContent == '0' ) document.getElementById('display').textContent = '';
 	// check if the max length is not exceeded
-	if ( currentScreen.length === MAX_DIGITS ) return false;
+	if ( currentScreen.length >= MAX_DIGITS ) return false;
 	return true;
 
 }
-
+/* currently not in use, might use it for checking if a 0 has been entered after an operator and then a . is required
 var zero = function(value){
 	if ( currentScreen === '0' ) return true
 	return false;
@@ -66,28 +69,24 @@ var removeZero = function(value){
 	if ( typeof value === 'object' ) value.textContent = ''
 	else value = '';
 }
-
-var validInput = function(val, operator){
-	console.log('valid_input');	
-	// 0 followed by a number, remove the 0
-//	if ( (ifZero(val) && (!operator) ) removeZero();
-	// 
-
-	// 
-	//if ( (currentScreen === '0') && (val !== '.') ) return false;
-	return true;
-}
-
+*/
 var display = function(value, operator){
 	document.getElementById('display').textContent += value;
 	if (!operator) currentNumber += value;
 	currentScreen = document.getElementById('display').textContent;
-	console.log(currentScreen);
-	console.log(currentNumber);
+	//console.log(currentScreen);
+	//console.log(currentNumber);
+	console.log(multiOps);
+}
+var displayResult = function(){
+	document.getElementById('display').textContent = firstValue;
 }
 
-var add = function(add){
+var add = function(){
+	console.log( firstValue, secondValue);
 
+	firstValue += secondValue;
+	displayResult();
 }	
 
 var subtract = function(){
@@ -114,51 +113,28 @@ var ac = function() {
 
 var cce = function() {
 	// take the last input from the screen and clear it
-}
-
-var calculate = function(){
 
 }
 
-/*
-workings of the app
-
-click event
-key down event
-	what is the input
-
-functions needed
-	* multiply
-	* subtract
-	* add
-	* subtract
-	* +/-
-	* =, once calculate
-
-	* validate_input
-	* update display, Main and calculations
-	* 
-
-vars needed
-	* to display the keyed in values
-	* maximum allowed numbers
-	* 
-
-
-Points to consider
-* remove the zero once a number is entered
-	- except when a . is entered
-
-* max numbers to display
-first decimal .e+amount of numbers 
-e.g. 1.e+16 or 1.23456753e+21
-error is not needed, just an increase of the exponential
-same goes for the minus e.g. 3.4567712e-12
-
---< Optional >--
-	* = multiple times, repeat the previous steps
-
---< Known issues >--
-- footer issue and #main background issue.
-
-*/
+var calculate = function() {
+	// todo catch += or -= *= errors
+	// push the latest value into the array
+	var op;
+	multiOps.push(1*currentNumber);
+	console.log(multiOps);
+	currentNumber = '';
+	while (multiOps.length > 0) {
+		firstValue = multiOps.shift();
+		op = multiOps.shift();
+		secondValue = multiOps.shift();
+		switch(op){
+			case '+': 
+				add();
+				break;
+/*			case '-':
+			case '×':
+			case '÷':*/
+		}
+	}
+	multiOps.length = 0;
+}

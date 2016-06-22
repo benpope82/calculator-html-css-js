@@ -10,12 +10,61 @@ User Story: I can add, subtract, multiply and divide two numbers.
 User Story: I can clear the input field with a clear button.
 User Story: I can keep chaining mathematical operations together until I hit the equal button, and the calculator will tell me the correct output.
 
-=== { Notes before startingn } ===
-
 === { To-do list } ===
 
-- how to assign an element (display) to the element on the page
+v how to assign an element (display) to the element on the page
+v work with gradient background
+v setup basic structure of the 
+- identify various input types and how to handle them
+	v 	first char replace the 0
+	first char a zero must be followed by a . then multiple 0's are allowed
+v make text on buttons not selectable
+
+- max numbers reached show exponential display
+	first decimal .e+amount of numbers 
+	e.g. 1.e+16 or 1.23456753e+21
+	error is not needed, just an increase of the exponential
+	same goes for the minus e.g. 3.4567712e-12
+
+- +/- functionality
+- +/- issues when splitting the string based on operators
+- C/CE functionality
+- operator functionality
+- styling button down animation
+- key down integration
 - copy all code to codepen
 - check cross browser compatibility
 
 === { Build notes } ===
+
+/*
+workings of the app
+
+click event
+key down event
+	what is the input
+
+functions needed
+	* multiply
+	* subtract
+	* add
+	* subtract
+	* +/-
+	* =, once calculate
+
+	* validate_input
+	* update display, Main and calculations
+	* 
+
+vars needed
+	* to display the keyed in values
+	* maximum allowed numbers
+	* 
+
+--< Optional >--
+	* = multiple times, repeat the previous steps
+
+--< Known issues >--
+- footer issue and #main background issue.
+
+*/
