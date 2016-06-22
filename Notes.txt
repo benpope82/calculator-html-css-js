@@ -26,10 +26,10 @@ v make text on buttons not selectable
 	error is not needed, just an increase of the exponential
 	same goes for the minus e.g. 3.4567712e-12
 
+- . functionality
 - +/- functionality
-- +/- issues when splitting the string based on operators
 - C/CE functionality
-- operator functionality
+v operator functionality
 - styling button down animation
 - key down integration
 - copy all code to codepen

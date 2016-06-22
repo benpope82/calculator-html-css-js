@@ -2,18 +2,18 @@
 
 // global vars
 var MAX_DIGITS = 19;		// number
-var multiOps = [];			// collection of numbers and operators
-var currentScreen = '';		// string
-var currentNumber = 0;		// number value
-var firstValue = 0;			// number value
-var secondValue = 0;		// number value
+var numAndOps = [];			// collection of numbers and operators
+var outcome;
 
-// functions
+// input functions
 $('.button').on("click", function(e) {
 	var key = e.currentTarget.textContent;
 	handleInput(key);
 });
 
+// keyin function
+
+// handling functions
 var handleInput = function(val){
 	switch (val) {
 		//special cases
@@ -23,7 +23,7 @@ var handleInput = function(val){
 		break;
 		case '=': calculate();
 		break;
-		case '+/-':
+		case '+/-': plus_minus();
 		break;
 		case '.': // . handling will happen here.
 		break;
@@ -32,7 +32,7 @@ var handleInput = function(val){
 		case '-':
 		case '×':
 		case '÷':
-			if ( validOperator(val) ) display(val,true)
+			if ( validOperator(val) ) display(val)
 			break;
 		// numbers
 		default: if ( validNumber(val) ) display(val);
@@ -41,21 +41,30 @@ var handleInput = function(val){
 }
 
 var validOperator = function(operator){
-	console.log('valid operator');
+	//console.log('valid operator', operator);
 	// operator can only be added when there is are two spaces left
 	// one of the operator the other for a number
-	if ( currentScreen.length == (MAX_DIGITS-2) ) return false
-	multiOps.push(Number(currentNumber), operator);
-	currentNumber = '';
+	//if ( currentScreen.length == (MAX_DIGITS-2) ) return false
+	
+	// when valid handle the operator
+	numAndOps.push(operator);					// add the operator into a new array element
+	numAndOps[numAndOps.length] = '';
 	return true;
 }
 
 var validNumber = function(val){
-	console.log('valid number', currentScreen.length);
-	// remove the inital 0
+	console.log('valid number');
+	// validation checks
+	// if the inital number is present, remove it
 	if ( document.getElementById('display').textContent == '0' ) document.getElementById('display').textContent = '';
+
+	// when valid handle the number
+	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
+
+
+
 	// check if the max length is not exceeded
-	if ( currentScreen.length >= MAX_DIGITS ) return false;
+	//if ( currentScreen.length >= MAX_DIGITS ) return false;
 	return true;
 
 }
@@ -70,45 +79,70 @@ var removeZero = function(value){
 	else value = '';
 }
 */
-var display = function(value, operator){
+var display = function(value){
 	document.getElementById('display').textContent += value;
-	if (!operator) currentNumber += value;
-	currentScreen = document.getElementById('display').textContent;
-	//console.log(currentScreen);
-	//console.log(currentNumber);
-	console.log(multiOps);
+	console.log(numAndOps);
 }
-var displayResult = function(){
-	document.getElementById('display').textContent = firstValue;
+var displayResult = function(custom){
+	if (custom) console.log('custom', custom);
+	else document.getElementById('display').textContent = outcome;
+	// reset values
+	clear();
+	console.log(numAndOps);
 }
 
-var add = function(){
-	console.log( firstValue, secondValue);
-
-	firstValue += secondValue;
-	displayResult();
+var add = function(addMe){
+	outcome += Number(addMe);
+	console.log(outcome);
 }	
 
-var subtract = function(){
-
+var subtract = function(subtractMe){
+	outcome -= Number(subtractMe);
+	console.log(outcome);
 }
 
-var multiply = function(){
-
+var multiply = function(multiplyBy){
+	outcome *= Number(multiplyBy);
+	console.log(outcome);
 }
 
-var divide = function(){
-
+var divide = function(divideBy){
+	outcome /= Number(divideBy);
+	console.log(divideBy);
+	console.log(outcome);
 }
 
 var plus_minus = function(){
+	// Operator check
+	console.log('plus_minus');
+	var replace = numAndOps[numAndOps.length-1];
+	var replaceWith;
+	replace = Number(replace);
+	console.log(replace);
+	//if ( (replace == NaN) ) console.log('NaN'); return;
 
+	// Valid number
+	if ( replace > 0 ) replaceWith = 0 - replace;
+	else replaceWith = Math.abs(replace);
+
+	// replace current value
+	numAndOps[numAndOps.length-1] = replaceWith;
+	console.log(numAndOps);
+
+	// 
 }
 
 var ac = function() {
 	document.getElementById('display').textContent = '0';
-	currentScreen = '';
-	currentNumber = '';
+	clear(true);			// clear_all
+}
+
+var clear = function(all){
+	// initialize / reset values
+	numAndOps.length = 0;
+	if ( all ) numAndOps[0] = '';					// AC is pressed or initial start-up
+	else numAndOps[0] = outcome.toString();			// used when = is pressed
+	outcome = 0;
 }
 
 var cce = function() {
@@ -117,24 +151,34 @@ var cce = function() {
 }
 
 var calculate = function() {
-	// todo catch += or -= *= errors
-	// push the latest value into the array
+	console.log(numAndOps);
+	
+	// When at least two numbers are available, proceed, else return
+	if (numAndOps.length <= 2 ) return;
 	var op;
-	multiOps.push(1*currentNumber);
-	console.log(multiOps);
-	currentNumber = '';
-	while (multiOps.length > 0) {
-		firstValue = multiOps.shift();
-		op = multiOps.shift();
-		secondValue = multiOps.shift();
+	// replace outcome with the first value
+	outcome = Number(numAndOps.shift());
+	var nextValue;
+	while (numAndOps.length > 0) {
+		op = numAndOps.shift();
+		nextValue = Number(numAndOps.shift());
 		switch(op){
 			case '+': 
-				add();
+				add(nextValue);
 				break;
-/*			case '-':
+			case '-': 
+				subtract(nextValue);
+				break;
 			case '×':
-			case '÷':*/
+				multiply(nextValue);
+				break;
+			case '÷':
+				divide(nextValue);
+				break;
 		}
 	}
-	multiOps.length = 0;
+	displayResult();
 }
+
+// initialize values to start with a clean app
+clear(true);
