@@ -22,33 +22,39 @@ var handleInput = function(val){
 		break;
 		case '+/-':
 		break;
-		case '.':
+		case '.': // . handling will happen here.
 		break;
 		// Operators
 		case '+':
 		case '-':
-		case '&#xd7;':
-		case '&divide;':
-		if (validOperator) display(val)
-		break;
+		case '×':
+		case '÷':
+			if ( validOperator(val) ) display(val,true)
+			break;
 		// numbers
-		default: if (validNumber(val)) display(val);
+		default: if ( validNumber(val) ) display(val);
+		break;
 	}
 }
 
 var validOperator = function(){
-	// operator can only be added when there is one more space left for a number
-	if ( currentScreen.length === MAX_DIGITS-1 ) return false
-	//currentNumber = '';
+	console.log('valid operator');
+	// operator can only be added when there is are two spaces left
+	// one of the operator the other for a number
+	if ( currentScreen.length == (MAX_DIGITS-2) ) return false
+
+	currentNumber = '';
 	return true;
 }
 
 var validNumber = function(val){
+	console.log('valid number');
 	// remove the inital 0
 	if ( document.getElementById('display').textContent == '0' ) document.getElementById('display').textContent = '';
 	// check if the max length is not exceeded
 	if ( currentScreen.length === MAX_DIGITS ) return false;
 	return true;
+
 }
 
 var zero = function(value){
@@ -72,9 +78,9 @@ var validInput = function(val, operator){
 	return true;
 }
 
-var display = function(value){
+var display = function(value, operator){
 	document.getElementById('display').textContent += value;
-	currentNumber += value;
+	if (!operator) currentNumber += value;
 	currentScreen = document.getElementById('display').textContent;
 	console.log(currentScreen);
 	console.log(currentNumber);
@@ -102,8 +108,8 @@ var plus_minus = function(){
 
 var ac = function() {
 	document.getElementById('display').textContent = '0';
-	currentScreen = '0';
-	currentNumber = '0';
+	currentScreen = '';
+	currentNumber = '';
 }
 
 var cce = function() {
