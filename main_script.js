@@ -1,59 +1,88 @@
 // Javascript
 
-var Calc = function(){
 // global vars
-	var MAX_DIGITS = '20';	
-	var validated;
-	var current_screen = document.getElementById('display').textContent;
-	var input = '';
+var MAX_DIGITS = '19';	
+var currentScreen = '';
+var currentNumber = '';
 
 // functions
-	this.add = function(add){
-		
-	}	
+$('.button').on("click", function(e) {
+	var key = e.currentTarget.textContent;
+	handleInput(key);
+});
 
-	this.valid_input = function(val){
-		if ( current_screen.length < MAX_DIGITS ) return true;
-		// when valid
-	}
-	this.display = function(value){
-		document.getElementById('display').textContent += value;
-	}
-
-	this.handle_input = function(val){
-		console.log(val);
-		switch (val) {
-			case '+': if (this.valid_input(val)) this.add();
-			break;
-			case '-': subtract();
-			break;
-			case '&#xd7;': multiply();
-			break;
-			case '&divide': divide();
-			break;
-			case '+/-': plus_minus();
-			break;
-			case 'AC': ac();
-			break;
-			case 'C/CE': cce();
-			break;
-			case '=': calculate();
-			break;
-			default: calc.display(val);
-		}
+var handleInput = function(val){
+	switch (val) {
+		//special cases
+		case 'AC': ac();
+		break;
+		case 'C/CE': cce();
+		break;
+		case '=': calculate();
+		break;
+		case '+/-':
+		break;
+		case '.':
+		break;
+		// Operators
+		case '+':
+		case '-':
+		case '&#xd7;':
+		case '&divide;':
+		if (validOperator) display(val)
+		break;
+		// numbers
+		default: if (validNumber(val)) display(val);
 	}
 }
 
-var calc = new Calc();
+var validOperator = function(){
+	// operator can only be added when there is one more space left for a number
+	if ( currentScreen.length === MAX_DIGITS-1 ) return false
+	//currentNumber = '';
+	return true;
+}
 
-$('.button').on("click", function(e) {
-	var pressed = e.currentTarget.textContent;
-	calc.handle_input(pressed);
-});
+var validNumber = function(val){
+	// remove the inital 0
+	if ( document.getElementById('display').textContent == '0' ) document.getElementById('display').textContent = '';
+	// check if the max length is not exceeded
+	if ( currentScreen.length === MAX_DIGITS ) return false;
+	return true;
+}
 
+var zero = function(value){
+	if ( currentScreen === '0' ) return true
+	return false;
+}
 
+var removeZero = function(value){
+	if ( typeof value === 'object' ) value.textContent = ''
+	else value = '';
+}
 
+var validInput = function(val, operator){
+	console.log('valid_input');	
+	// 0 followed by a number, remove the 0
+//	if ( (ifZero(val) && (!operator) ) removeZero();
+	// 
 
+	// 
+	//if ( (currentScreen === '0') && (val !== '.') ) return false;
+	return true;
+}
+
+var display = function(value){
+	document.getElementById('display').textContent += value;
+	currentNumber += value;
+	currentScreen = document.getElementById('display').textContent;
+	console.log(currentScreen);
+	console.log(currentNumber);
+}
+
+var add = function(add){
+
+}	
 
 var subtract = function(){
 
@@ -72,7 +101,9 @@ var plus_minus = function(){
 }
 
 var ac = function() {
-	calc.display('0');
+	document.getElementById('display').textContent = '0';
+	currentScreen = '0';
+	currentNumber = '0';
 }
 
 var cce = function() {
