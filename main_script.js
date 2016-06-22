@@ -17,16 +17,21 @@ $('.button').on("click", function(e) {
 var handleInput = function(val){
 	switch (val) {
 		//special cases
-		case 'AC': ac();
-		break;
-		case 'C/CE': cce();
-		break;
-		case '=': calculate();
-		break;
-		case '+/-': plus_minus();
-		break;
-		case '.': // . handling will happen here.
-		break;
+		case 'AC': 
+			ac();
+			break;
+		case 'C/CE': 
+			cce();
+			break;
+		case '=': 
+			calculate();
+			break;
+		case '+/-': 
+			plus_minus();
+			break;
+		case '.': 
+			if ( noDot(val) ) display(val);
+			break;
 		// Operators
 		case '+':
 		case '-':
@@ -39,6 +44,8 @@ var handleInput = function(val){
 		break;
 	}
 }
+
+// validation functions //
 
 var validOperator = function(operator){
 	//console.log('valid operator', operator);
@@ -61,24 +68,23 @@ var validNumber = function(val){
 	// when valid handle the number
 	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
 
-
-
 	// check if the max length is not exceeded
 	//if ( currentScreen.length >= MAX_DIGITS ) return false;
 	return true;
-
-}
-/* currently not in use, might use it for checking if a 0 has been entered after an operator and then a . is required
-var zero = function(value){
-	if ( currentScreen === '0' ) return true
-	return false;
 }
 
-var removeZero = function(value){
-	if ( typeof value === 'object' ) value.textContent = ''
-	else value = '';
+var noDot = function() {
+	console.log( /[.]/.test(numAndOps[numAndOps.length-1]) );
+	// return false when a dot is present
+	if ( /[.]/.test(numAndOps[numAndOps.length-1]) ) return false;
+	else {
+		numAndOps[numAndOps.length-1] += '.';
+		return true;
+	} 
 }
-*/
+
+// display functions
+
 var display = function(value){
 	document.getElementById('display').textContent += value;
 	console.log(numAndOps);
@@ -91,6 +97,7 @@ var displayResult = function(custom){
 	console.log(numAndOps);
 }
 
+// operator functions
 var add = function(addMe){
 	outcome += Number(addMe);
 	console.log(outcome);
@@ -137,17 +144,17 @@ var ac = function() {
 	clear(true);			// clear_all
 }
 
+var cce = function() {
+	// take the last input from the screen and clear it
+
+}
+
 var clear = function(all){
 	// initialize / reset values
 	numAndOps.length = 0;
 	if ( all ) numAndOps[0] = '';					// AC is pressed or initial start-up
 	else numAndOps[0] = outcome.toString();			// used when = is pressed
 	outcome = 0;
-}
-
-var cce = function() {
-	// take the last input from the screen and clear it
-
 }
 
 var calculate = function() {
@@ -182,3 +189,17 @@ var calculate = function() {
 
 // initialize values to start with a clean app
 clear(true);
+
+
+// might need this later
+/* currently not in use, might use it for checking if a 0 has been entered after an operator and then a . is required
+var zero = function(value){
+	if ( currentScreen === '0' ) return true
+	return false;
+}
+
+var removeZero = function(value){
+	if ( typeof value === 'object' ) value.textContent = ''
+	else value = '';
+}
+*/
