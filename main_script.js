@@ -1,22 +1,19 @@
 // Javascript
 
 // global vars
-var MAX_DIGITS = 19;		// number
+var MAX_DIGITS = 20;		// Max digits to display
 var numAndOps = [];			// collection of numbers and operators
-var outcome;
-//var dotExpected = false;
+var outcome;				// number; result of the calculation
 
-// input functions
+// input click function
 $('.button').on("click", function(e) {
 	var key = e.currentTarget.textContent;
 	handleInput(key);
 });
 
-// keyin function
-
+// input key function
 $('body').keypress(function(e){
-	console.log(e.which);
-	console.log(e);
+	//console.log(e);
 	// Numbers 0 - 9
 	if ( (e.which >= 48) && (e.which <= 57) ) handleInput(String.fromCharCode(e.which));
 	if (e.which == 46) handleInput('.');	// .
@@ -30,6 +27,7 @@ $('body').keypress(function(e){
 
 // handling functions
 var handleInput = function(val){
+	
 	switch (val) {
 		//special cases
 		case 'AC': 
@@ -63,10 +61,8 @@ var handleInput = function(val){
 // validation functions //
 
 var validOperator = function(operator){
-	//console.log('valid operator', operator);
-	// operator can only be added when there is are two spaces left
-	// one of the operator and another for a number
-	//if ( currentScreen.length == (MAX_DIGITS-2) ) return false
+	// limit the input so the display does not overflow and the last input is not an operator
+	if (numAndOps.join('').length >= MAX_DIGITS-1) return false;
 	
 	// an operator must be proceeded by a number
 	if ( numAndOps[numAndOps.length-1] == '' ) return false;
@@ -78,24 +74,32 @@ var validOperator = function(operator){
 }
 
 var validNumber = function(val){
-	console.log('valid number');
-	// validation checks
+	//console.log('valid number');
+	// limit the input so the display does not overflow
+	if (numAndOps.join('').length >= MAX_DIGITS) return false;
+
 	// if initial 0 is followed by a zero, cancel
 	if ( (val === '0') && (numAndOps[numAndOps.length-1] === '0') ) return false;
+
 	// if the inital 0 is present, remove it, from the array
 	if ( (val > '0') && (numAndOps[numAndOps.length-1] === '0') ) numAndOps[numAndOps.length-1] = '';
+
 	// when valid handle the number
 	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
 	return true;
 }
 
 var dotAllowed = function() {
-	console.log( /[.]/.test(numAndOps[numAndOps.length-1]) );
+	// limit the input so the display does not overflow and the last input is not a dot
+	if (numAndOps.join('').length >= MAX_DIGITS-1) return false;
+
 	// return false when a dot is already present
 	if ( /[.]/.test(numAndOps[numAndOps.length-1]) ) return false;
+	
 	// last element of the array is assigned
 	var currentInput = numAndOps[numAndOps.length-1];
 	if (currentInput === '') return false; 
+	
 	// passed all checks, add . to the array and return true
 	numAndOps[numAndOps.length-1] += '.';
 	return true;
@@ -147,6 +151,7 @@ var plus_minus = function(){
 	return true;
 }
 
+// special action functions
 var ac = function() {
 	document.getElementById('display').textContent = '0';
 	clear(true);			// clear_all
@@ -169,6 +174,7 @@ var clear = function(all){
 var calculate = function() {
 	// When at least two numbers are available, proceed, else return
 	if (numAndOps.length <= 2 ) return false;
+	if ( numAndOps[numAndOps.length-1] == '' ) numAndOps[numAndOps.length-1] = 0;
 	var op;
 	var nextValue;
 	// assign outcome with the first value
@@ -191,22 +197,15 @@ var calculate = function() {
 				break;
 		}
 	}
-	// dealing with large outcome
-
-	// deal with large amount of digits after .
-
-	// Reset app's main vars
+	// No need to deal with large outcome int numbers as the display input is limited
+	// Deal with to large float numbers, digits behind the dot.
+	var strOutcome = outcome.toString();
+	if ( ( /./.test(strOutcome) ) && ( strOutcome.length >= MAX_DIGITS ) ) {
+		outcome += outcome.subString(0, MAX_DIGITS);
+	}
 	clear();
 	return true;
 }
 
 // initialize values to start with a clean app
 clear(true);
-
-/*
-
-function startSearch(e){
-  if ( (e.keyCode || e.which) == 13 ) { //Enter keycode
-    subject = $('#subject').val();
-
-*/

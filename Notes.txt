@@ -20,7 +20,7 @@ v identify various input types and how to handle them
 	v first char a zero must be followed by a . then multiple 0's are allowed
 v make text on buttons not selectable
 
-- max numbers reached show exponential display
+v max numbers reached show exponential display
 	first decimal .e+amount of numbers 
 	e.g. 1.e+16 or 1.23456753e+21
 	error is not needed, just an increase of the exponential
