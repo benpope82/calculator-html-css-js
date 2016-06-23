@@ -15,9 +15,9 @@ User Story: I can keep chaining mathematical operations together until I hit the
 v how to assign an element (display) to the element on the page
 v work with gradient background
 v setup basic structure of the 
-- identify various input types and how to handle them
+v identify various input types and how to handle them
 	v 	first char replace the 0
-	first char a zero must be followed by a . then multiple 0's are allowed
+	v first char a zero must be followed by a . then multiple 0's are allowed
 v make text on buttons not selectable
 
 - max numbers reached show exponential display
@@ -26,12 +26,12 @@ v make text on buttons not selectable
 	error is not needed, just an increase of the exponential
 	same goes for the minus e.g. 3.4567712e-12
 
+v operator functionality
 - dealing with large outcomes
 - dealing with large .xxxx outcomes
-- . functionality
+v . functionality
 - +/- functionality
 - C/CE functionality
-v operator functionality
 - styling button down animation
 - key down integration
 - copy all code to codepen

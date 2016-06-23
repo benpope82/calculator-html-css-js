@@ -31,17 +31,17 @@ var handleInput = function(val){
 			plus_minus();
 			break;
 		case '.': 
-			if ( noDot(val) ) display(val);
+			if ( dotAllowed() ) display();
 			break;
 		// Operators
 		case '+':
 		case '-':
 		case '×':
 		case '÷':
-			if ( validOperator(val) ) display(val)
+			if ( validOperator(val) ) display()
 			break;
 		// numbers
-		default: if ( validNumber(val) ) display(val);
+		default: if ( validNumber(val) ) display();
 		break;
 	}
 }
@@ -63,36 +63,32 @@ var validOperator = function(operator){
 var validNumber = function(val){
 	console.log('valid number');
 	// validation checks
-	console.log(numAndOps.length);
-	//if ( numAndOps[numAndOps.length-1].charAt(0) === '0' ) console.log('--- first zero ---'); return false;
+	// if 0 is followed by a zero, cancel
+	if ( (val === '0') && (numAndOps[numAndOps.length-1] === '0') ) return false;
+	// if the inital 0 is present, remove it, from the array
+	if ( (val > '0') && (numAndOps[numAndOps.length-1] === '0') ) numAndOps[numAndOps.length-1] = '';
 
-	// if the inital 0 is present, remove it, from the display and the array
-	if ( document.getElementById('display').textContent == '0' ) {
-		document.getElementById('display').textContent = '';
-		numAndOps[0] = '';
-	}
 	// when valid handle the number
 	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
-
-	// check if the max length is not exceeded
-	//if ( currentScreen.length >= MAX_DIGITS ) return false;
 	return true;
 }
 
-var noDot = function() {
+var dotAllowed = function() {
 	console.log( /[.]/.test(numAndOps[numAndOps.length-1]) );
-	// return false when a dot is present
+	// return false when a dot is already present
 	if ( /[.]/.test(numAndOps[numAndOps.length-1]) ) return false;
-	else {
-		numAndOps[numAndOps.length-1] += '.';
-		return true;
-	} 
+	// last element of the array is assigned
+	var currentInput = numAndOps[numAndOps.length-1];
+	if (currentInput === '') return false; 
+	// passed all checks, add . to the array and return true
+	numAndOps[numAndOps.length-1] += '.';
+	return true;
 }
 
 // display functions
 
-var display = function(value){
-	document.getElementById('display').textContent += value;
+var display = function(){
+	document.getElementById('display').textContent = numAndOps.join('');
 	console.log(numAndOps);
 }
 var displayResult = function(custom){
