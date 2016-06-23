@@ -98,7 +98,11 @@ body{
   margin: 5px;
   width: 100px;
   height: 35px;
-  border: 1px solid #111111;
+  /*border: 1px solid #111111;*/
+  border-top: 1px solid #444444;
+  border-left: 1px solid #444444;
+  border-bottom: 2px solid #dddddd;
+  border-right: 2px solid #dddddd;
   background-image: 
     repeating-linear-gradient(
       90deg,
@@ -120,6 +124,13 @@ body{
   overflow: hidden;
 }
 
+.inlay{
+  border-top: 1px solid #444444 !important;
+  border-left: 1px solid #444444 !important;
+  border-bottom: 2px solid #ddddee !important;
+  border-right: 2px solid #ddddee !important;
+}
+
 .button{
   display: inline-block;
   text-align: center;
@@ -130,10 +141,10 @@ body{
   border: 1px solid #010101;
   border-radius: 2px;
   color: #fafafc;
-  background-color: #555b59;
+  background-color: #636967;
   background-image: 
     linear-gradient(
-      #fafafc, #555b59 3px
+      #fafafc, #636967 3px
     );
 /* code for non select */
   -webkit-touch-callout: none; /* iOS Safari */
@@ -141,14 +152,23 @@ body{
   -khtml-user-select: none;    /* Konqueror */
   -moz-user-select: none;      /* Firefox */
   -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;           /* Non-prefixed version, currently
-                                  not supported by any browser */
-
+  user-select: none;           /* Non-prefixed version */
 }
 
 .button:hover, 
 .button:focus{
   cursor: pointer;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(219,218,192,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(219,218,192,1);
+  box-shadow: 0px 0px 3px 1px rgba(219,218,192,1);
+}
+
+.button:active{
+  background-color: #555b59;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #555b59 3px
+    );
 }
 
 .two-columns{
@@ -157,17 +177,31 @@ body{
 
 .operator {
   background-color: #98a19e;
-  background-image: none;
   background-image: 
     linear-gradient(
       #fafafc, #98a19e 3px
     );
 }
-
-.clear {
-  background-color: #ad3235;
+.operator:active{
+  background-color: #88918e;
   background-image: 
     linear-gradient(
-      #fafafc, #ad3235 3px
+      #0a0a0a, #88918e 3px
+    );
+}
+
+.clear {
+  background-color: #c2383d;
+  background-image:
+    linear-gradient(
+      #fafafc, #c2383d 3px
+    );
+}
+
+.clear:active{
+  background-color: #b3373e;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #b3373e 3px
     );
 }
