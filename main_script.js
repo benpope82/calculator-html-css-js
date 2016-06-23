@@ -4,7 +4,7 @@
 var MAX_DIGITS = 19;		// number
 var numAndOps = [];			// collection of numbers and operators
 var outcome;
-var dotExpected = false;
+//var dotExpected = false;
 
 // input functions
 $('.button').on("click", function(e) {
@@ -13,6 +13,20 @@ $('.button').on("click", function(e) {
 });
 
 // keyin function
+
+$('body').keypress(function(e){
+	console.log(e.which);
+	console.log(e);
+	// Numbers 0 - 9
+	if ( (e.which >= 48) && (e.which <= 57) ) handleInput(String.fromCharCode(e.which));
+	if (e.which == 46) handleInput('.');	// .
+	if (e.which == 43) handleInput('+');	// add
+	if (e.which == 45) handleInput('-');	// subtract
+	if (e.which == 42) handleInput('×');	// multiply
+	if (e.which == 47) handleInput('÷');	// divide
+	if (e.which == 13) handleInput('=');	// =
+	if (e.which == 8) handleInput('C/CE');	// C/CE
+});
 
 // handling functions
 var handleInput = function(val){
@@ -25,10 +39,10 @@ var handleInput = function(val){
 			cce(); display();
 			break;
 		case '=': 
-			calculate();
+			if ( calculate() ) display();
 			break;
 		case '+/-': 
-			plus_minus(); display();
+			if ( plus_minus() ) display();
 			break;
 		case '.': 
 			if ( dotAllowed() ) display();
@@ -87,60 +101,50 @@ var dotAllowed = function() {
 	return true;
 }
 
-// display functions
+// display function
 
 var display = function(){
 	document.getElementById('display').textContent = numAndOps.join('');
 	console.log(numAndOps);
 }
-var displayResult = function(custom){
-	if (custom) console.log('custom', custom);
-	else document.getElementById('display').textContent = outcome;
-	// reset values
-	clear();
-	console.log(numAndOps);
-}
 
 // operator functions
 var add = function(addMe){
-	outcome += Number(addMe);
+	outcome += parseFloat(addMe);
 	console.log(outcome);
 }	
 
 var subtract = function(subtractMe){
-	outcome -= Number(subtractMe);
+	outcome -= parseFloat(subtractMe);
 	console.log(outcome);
 }
 
 var multiply = function(multiplyBy){
-	outcome *= Number(multiplyBy);
+	outcome *= parseFloat(multiplyBy);
 	console.log(outcome);
 }
 
 var divide = function(divideBy){
-	outcome /= Number(divideBy);
-	console.log(divideBy);
+	outcome /= parseFloat(divideBy);
 	console.log(outcome);
 }
 
 var plus_minus = function(){
-	// Operator check
-	console.log('plus_minus');
 	var replace = numAndOps[numAndOps.length-1];
 	var replaceWith;
-	replace = Number(replace);
-	console.log(replace);
-	//if ( (replace == NaN) ) console.log('NaN'); return;
 
-	// Valid number
+	// Operator check, the op procedure adds ''
+	if ( replace == '' ) return false;
+	replace = parseFloat(replace);
+
+	// Proceed with a valid number
 	if ( replace > 0 ) replaceWith = 0 - replace;
 	else replaceWith = Math.abs(replace);
 
 	// replace current value
 	numAndOps[numAndOps.length-1] = replaceWith;
 	console.log(numAndOps);
-
-	// 
+	return true;
 }
 
 var ac = function() {
@@ -163,14 +167,12 @@ var clear = function(all){
 }
 
 var calculate = function() {
-	console.log(numAndOps);
-	
 	// When at least two numbers are available, proceed, else return
-	if (numAndOps.length <= 2 ) return;
+	if (numAndOps.length <= 2 ) return false;
 	var op;
-	// replace outcome with the first value
-	outcome = parseFloat(numAndOps.shift());
 	var nextValue;
+	// assign outcome with the first value
+	outcome = parseFloat(numAndOps.shift());
 	while (numAndOps.length > 0) {
 		op = numAndOps.shift();
 		nextValue = parseFloat(numAndOps.shift());
@@ -189,22 +191,22 @@ var calculate = function() {
 				break;
 		}
 	}
-	displayResult();
+	// dealing with large outcome
+
+	// deal with large amount of digits after .
+
+	// Reset app's main vars
+	clear();
+	return true;
 }
 
 // initialize values to start with a clean app
 clear(true);
 
+/*
 
-// might need this later
-/* currently not in use, might use it for checking if a 0 has been entered after an operator and then a . is required
-var zero = function(value){
-	if ( currentScreen === '0' ) return true
-	return false;
-}
+function startSearch(e){
+  if ( (e.keyCode || e.which) == 13 ) { //Enter keycode
+    subject = $('#subject').val();
 
-var removeZero = function(value){
-	if ( typeof value === 'object' ) value.textContent = ''
-	else value = '';
-}
 */

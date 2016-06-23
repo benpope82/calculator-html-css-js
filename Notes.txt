@@ -30,10 +30,8 @@ v operator functionality
 v . functionality
 v +/- functionality
 v C/CE functionality
-- dealing with large outcomes
-- dealing with large .xxxx outcomes
+v key down integration
 - styling button down animation
-- key down integration
 - copy all code to codepen
 - check cross browser compatibility
 
@@ -53,18 +51,16 @@ functions needed
 	* subtract
 	* +/-
 	* =, once calculate
-
 	* validate_input
 	* update display, Main and calculations
-	* 
 
 vars needed
 	* to display the keyed in values
 	* maximum allowed numbers
-	* 
 
 --< Optional >--
-	* = multiple times, repeat the previous steps
+- dealing with large outcomes
+- dealing with large .xxxx outcomes
 
 --< Known issues >--
 - footer issue and #main background issue.
