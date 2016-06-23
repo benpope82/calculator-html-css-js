@@ -22,13 +22,13 @@ var handleInput = function(val){
 			ac();
 			break;
 		case 'C/CE': 
-			cce();
+			cce(); display();
 			break;
 		case '=': 
 			calculate();
 			break;
 		case '+/-': 
-			plus_minus();
+			plus_minus(); display();
 			break;
 		case '.': 
 			if ( dotAllowed() ) display();
@@ -54,6 +54,9 @@ var validOperator = function(operator){
 	// one of the operator and another for a number
 	//if ( currentScreen.length == (MAX_DIGITS-2) ) return false
 	
+	// an operator must be proceeded by a number
+	if ( numAndOps[numAndOps.length-1] == '' ) return false;
+
 	// when valid handle the operator
 	numAndOps.push(operator);					// add the operator into a new array element
 	numAndOps[numAndOps.length] = '';
@@ -63,11 +66,10 @@ var validOperator = function(operator){
 var validNumber = function(val){
 	console.log('valid number');
 	// validation checks
-	// if 0 is followed by a zero, cancel
+	// if initial 0 is followed by a zero, cancel
 	if ( (val === '0') && (numAndOps[numAndOps.length-1] === '0') ) return false;
 	// if the inital 0 is present, remove it, from the array
 	if ( (val > '0') && (numAndOps[numAndOps.length-1] === '0') ) numAndOps[numAndOps.length-1] = '';
-
 	// when valid handle the number
 	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
 	return true;
@@ -148,7 +150,8 @@ var ac = function() {
 
 var cce = function() {
 	// take the last input from the screen and clear it
-
+	if ( numAndOps.length === 1 ) numAndOps[numAndOps.length-1] = '0';
+	else numAndOps[numAndOps.length-1] = '';
 }
 
 var clear = function(all){

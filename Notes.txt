@@ -27,11 +27,11 @@ v make text on buttons not selectable
 	same goes for the minus e.g. 3.4567712e-12
 
 v operator functionality
+v . functionality
+v +/- functionality
+v C/CE functionality
 - dealing with large outcomes
 - dealing with large .xxxx outcomes
-v . functionality
-- +/- functionality
-- C/CE functionality
 - styling button down animation
 - key down integration
 - copy all code to codepen
