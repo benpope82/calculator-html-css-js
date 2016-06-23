@@ -4,6 +4,7 @@
 var MAX_DIGITS = 19;		// number
 var numAndOps = [];			// collection of numbers and operators
 var outcome;
+var dotExpected = false;
 
 // input functions
 $('.button').on("click", function(e) {
@@ -50,7 +51,7 @@ var handleInput = function(val){
 var validOperator = function(operator){
 	//console.log('valid operator', operator);
 	// operator can only be added when there is are two spaces left
-	// one of the operator the other for a number
+	// one of the operator and another for a number
 	//if ( currentScreen.length == (MAX_DIGITS-2) ) return false
 	
 	// when valid handle the operator
@@ -62,9 +63,14 @@ var validOperator = function(operator){
 var validNumber = function(val){
 	console.log('valid number');
 	// validation checks
-	// if the inital number is present, remove it
-	if ( document.getElementById('display').textContent == '0' ) document.getElementById('display').textContent = '';
+	console.log(numAndOps.length);
+	//if ( numAndOps[numAndOps.length-1].charAt(0) === '0' ) console.log('--- first zero ---'); return false;
 
+	// if the inital 0 is present, remove it, from the display and the array
+	if ( document.getElementById('display').textContent == '0' ) {
+		document.getElementById('display').textContent = '';
+		numAndOps[0] = '';
+	}
 	// when valid handle the number
 	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
 
@@ -152,7 +158,7 @@ var cce = function() {
 var clear = function(all){
 	// initialize / reset values
 	numAndOps.length = 0;
-	if ( all ) numAndOps[0] = '';					// AC is pressed or initial start-up
+	if ( all ) numAndOps[0] = '0';					// AC is pressed or initial start-up
 	else numAndOps[0] = outcome.toString();			// used when = is pressed
 	outcome = 0;
 }
@@ -164,11 +170,11 @@ var calculate = function() {
 	if (numAndOps.length <= 2 ) return;
 	var op;
 	// replace outcome with the first value
-	outcome = Number(numAndOps.shift());
+	outcome = parseFloat(numAndOps.shift());
 	var nextValue;
 	while (numAndOps.length > 0) {
 		op = numAndOps.shift();
-		nextValue = Number(numAndOps.shift());
+		nextValue = parseFloat(numAndOps.shift());
 		switch(op){
 			case '+': 
 				add(nextValue);

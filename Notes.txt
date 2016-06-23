@@ -26,6 +26,8 @@ v make text on buttons not selectable
 	error is not needed, just an increase of the exponential
 	same goes for the minus e.g. 3.4567712e-12
 
+- dealing with large outcomes
+- dealing with large .xxxx outcomes
 - . functionality
 - +/- functionality
 - C/CE functionality
