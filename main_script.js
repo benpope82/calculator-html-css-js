@@ -139,7 +139,8 @@ var plus_minus = function(){
 
 	// Operator check, the op procedure adds ''
 	if ( replace == '' ) return false;
-	replace = parseFloat(replace);
+	if ( Number(replace) == 0 ) return false;
+	replace = Number(replace);
 
 	// Proceed with a valid number
 	if ( replace > 0 ) replaceWith = 0 - replace;

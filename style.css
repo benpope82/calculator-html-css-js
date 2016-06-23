@@ -117,11 +117,16 @@ body{
   margin: 0px 0px 10px 0px;
   padding: 4px 5px;
   color: #3d4749;
-  background-color: #89957d;
-  border: 1px solid #010101;
   text-align: right;
   font-size: 1.2em;
+  line-height: 1.6em;
   overflow: hidden;
+  background-color: #89957d;
+  background-image: 
+    linear-gradient(
+      #89957d,
+      #919c86 10px
+    );
 }
 
 .inlay{

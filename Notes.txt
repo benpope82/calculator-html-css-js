@@ -31,9 +31,9 @@ v . functionality
 v +/- functionality
 v C/CE functionality
 v key down integration
-- styling button down animation
-- copy all code to codepen
-- check cross browser compatibility
+v styling button down animation
+v copy all code to codepen
+- check cross browser compatibility, still have to check chrome
 
 === { Build notes } ===
 
