@@ -113,13 +113,21 @@ body{
     );
 }
 
+@font-face {
+ font-family: 'digital-7';
+ src: url('font/digital-7.ttf');
+ font-weight: normal;
+ font-style: normal;
+}
+
 #display{
+  font-family: 'digital-7', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  line-height: 1em;
   margin: 0px 0px 10px 0px;
   padding: 4px 5px;
   color: #3d4749;
   text-align: right;
-  font-size: 1.2em;
-  line-height: 1.6em;
   overflow: hidden;
   background-color: #89957d;
   background-image: 

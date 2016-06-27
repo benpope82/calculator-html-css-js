@@ -140,11 +140,11 @@ var plus_minus = function(){
 	// Operator check, the op procedure adds ''
 	if ( replace == '' ) return false;
 	if ( Number(replace) == 0 ) return false;
-	replace = Number(replace);
+	//replace = toFloatNumber(replace);
 
 	// Proceed with a valid number
-	if ( replace > 0 ) replaceWith = 0 - replace;
-	else replaceWith = Math.abs(replace);
+	if ( replace > 0 ) replaceWith = '-'+ replace;
+	else replaceWith = replace.slice(1,replace.length);;
 
 	// replace current value
 	numAndOps[numAndOps.length-1] = replaceWith;
