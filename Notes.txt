@@ -64,5 +64,6 @@ vars needed
 
 --< Known issues >--
 - footer issue and #main background issue.
+- 0.1 + 0.2 = 0.30000000000000002
 
 */

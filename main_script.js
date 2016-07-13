@@ -16,13 +16,8 @@ $('body').keypress(function(e){
 	//console.log(e);
 	// Numbers 0 - 9
 	if ( (e.which >= 48) && (e.which <= 57) ) handleInput(String.fromCharCode(e.which));
-	if (e.which == 46) handleInput('.');	// .
-	if (e.which == 43) handleInput('+');	// add
-	if (e.which == 45) handleInput('-');	// subtract
-	if (e.which == 42) handleInput('×');	// multiply
-	if (e.which == 47) handleInput('÷');	// divide
-	if (e.which == 13) handleInput('=');	// =
-	if (e.which == 8) handleInput('C/CE');	// C/CE
+	var inputOptions = { 46: '.', 43: '+', 45: '-', 42: '×', 47: '÷', 13: '=', 8: 'C/EC' }
+	handleInput(inputOptions[e]);
 });
 
 // handling functions
@@ -108,7 +103,8 @@ var dotAllowed = function() {
 // display function
 
 var display = function(){
-	document.getElementById('display').textContent = numAndOps.join('');
+	//document.getElementById('display').textContent = numAndOps.join('');
+	$('#display').text(numAndOps.join(''));
 	console.log(numAndOps);
 }
 
@@ -154,7 +150,8 @@ var plus_minus = function(){
 
 // special action functions
 var ac = function() {
-	document.getElementById('display').textContent = '0';
+	//document.getElementById('display').textContent = '0';
+	$('#display').text('0');
 	clear(true);			// clear_all
 }
 
