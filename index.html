@@ -12,6 +12,229 @@
 
 	<link type="text/css" rel="stylesheet" href="style.css" type="text/css" rel="stylesheet">
 
+<style id="jsbin-css">
+/* Stylesheet for Calculator App */
+/*
+/  Font credits for Sizenko Alexander
+/  The fonts Digital-7
+/  http://www.styleseven.com
+*/
+
+/*Opera Fix*/
+body:before {
+  content:"";
+  height:100%;
+  float:left;
+  width:0;
+  margin-top:-32767px;
+}
+
+/* part of the body / wrapper / footer styling */
+
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+#main {overflow:auto; padding-bottom: 50px;}  /* must be same height as the footer */
+
+footer {
+  position: relative;
+  margin-top: -50px; /* negative value of footer height */
+  height: 50px;
+  clear:both;
+  /* The above is required for the sticky footer */
+	background-color: #123456;
+	color: #aaaaaa;
+	padding: 5px 20px 5px 20px;
+	text-align: center;
+}
+
+.footer-center{
+  display: table-cell;
+  vertical-align: middle;
+}
+footer a{
+  color: #ffffff;
+  padding: 2px 10px 2px 10px;
+  border-radius: 20px;
+}
+
+footer a:hover{
+  background-color: #113456;
+  color: #000000;
+  padding: 2px 10px 2px 10px;
+  text-decoration: inherit;
+}
+
+/*  Custom styling depending on the project */ 
+
+body{
+  font-size: 17px;
+  background-color: #5160DE;
+  background-image:
+    linear-gradient(
+      #BD7442,
+      #56351E 60%
+    );
+    
+}
+
+.calculator{
+  width: 275px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #a0a9a4; /* fall-back for older browsers */
+  /* Wen supported gradient top to bottom, #eaebed > #a0a9a4*/
+  background-image:
+    linear-gradient(
+      #eaebed, #a0a9a4 150px
+    );
+  border: 1px solid #3d4749;
+  border-radius: 20px;
+
+  -webkit-box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+  -moz-box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+  box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+
+}
+
+.logo {
+  background-image: url('images/logo.png');
+  display: inline-block;
+  width: 110px;
+  height: 50px;
+  /*background-color: #a0a9a4;
+  border: 1px solid #010101; */
+}
+
+.solar {
+  display: inline-block;
+  float: right;
+  margin: 5px;
+  width: 100px;
+  height: 35px;
+  /*border: 1px solid #111111;*/
+  border-top: 1px solid #444444;
+  border-left: 1px solid #444444;
+  border-bottom: 2px solid #dddddd;
+  border-right: 2px solid #dddddd;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      #4a372e,
+      #4a372e 23px,
+      #5e544f,
+      #5e544f 25px
+    );
+}
+
+@font-face {
+ font-family: 'digital-7';
+ src: url('font/digital-7.ttf');
+ font-weight: normal;
+ font-style: normal;
+}
+
+#display{
+  font-family: 'digital-7', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  line-height: 1em;
+  margin: 0px 0px 10px 0px;
+  padding: 4px 5px;
+  color: #3d4749;
+  text-align: right;
+  overflow: hidden;
+  background-color: #89957d;
+  background-image: 
+    linear-gradient(
+      #89957d,
+      #919c86 10px
+    );
+}
+
+.inlay{
+  border-top: 1px solid #444444 !important;
+  border-left: 1px solid #444444 !important;
+  border-bottom: 2px solid #ddddee !important;
+  border-right: 2px solid #ddddee !important;
+}
+
+.button{
+  display: inline-block;
+  text-align: center;
+  margin: 5px 2px 0px 2px;
+  padding: 6px 0;
+  width: 50px;
+  max-height: 40px;
+  border: 1px solid #010101;
+  border-radius: 2px;
+  color: #fafafc;
+  background-color: #636967;
+  background-image: 
+    linear-gradient(
+      #fafafc, #636967 3px
+    );
+/* code for non select */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version */
+}
+
+.button:hover, 
+.button:focus{
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(219,218,192,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(219,218,192,1);
+  box-shadow: 0px 0px 3px 1px rgba(219,218,192,1);
+}
+
+.button:active{
+  background-color: #555b59;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #555b59 3px
+    );
+}
+
+.two-columns{
+  width: 110px;
+}
+
+.operator {
+  background-color: #98a19e;
+  background-image: 
+    linear-gradient(
+      #fafafc, #98a19e 3px
+    );
+}
+.operator:active{
+  background-color: #88918e;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #88918e 3px
+    );
+}
+
+.clear {
+  background-color: #c2383d;
+  background-image:
+    linear-gradient(
+      #fafafc, #c2383d 3px
+    );
+}
+
+.clear:active{
+  background-color: #b3373e;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #b3373e 3px
+    );
+}
+
+</style>
 </head>
 <body>
 	<div id="wrap">
@@ -59,5 +282,712 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="main_script.js"></script>
+<script id="jsbin-javascript">
+// Javascript
+
+// global vars
+var MAX_DIGITS = 20;		// Max digits to display
+var numAndOps = [];			// collection of numbers and operators
+var outcome;				// number; result of the calculation
+
+// input click function
+$('.button').on("click", function(e) {
+	var key = e.currentTarget.textContent;
+	handleInput(key);
+});
+
+// input key function
+$('body').keypress(function(e){
+	//console.log(e);
+	// Numbers 0 - 9
+	if ( (e.which >= 48) && (e.which <= 57) ) handleInput(String.fromCharCode(e.which));
+	var inputOptions = { 46: '.', 43: '+', 45: '-', 42: '×', 47: '÷', 13: '=', 8: 'C/EC' }
+	handleInput(inputOptions[e]);
+});
+
+// handling functions
+var handleInput = function(val){
+	
+	switch (val) {
+		//special cases
+		case 'AC': 
+			ac();
+			break;
+		case 'C/CE': 
+			cce(); display();
+			break;
+		case '=': 
+			if ( calculate() ) display();
+			break;
+		case '+/-': 
+			if ( plus_minus() ) display();
+			break;
+		case '.': 
+			if ( dotAllowed() ) display();
+			break;
+		// Operators
+		case '+':
+		case '-':
+		case '×':
+		case '÷':
+			if ( validOperator(val) ) display()
+			break;
+		// numbers
+		default: if ( validNumber(val) ) display();
+		break;
+	}
+}
+
+// validation functions //
+
+var validOperator = function(operator){
+	// limit the input so the display does not overflow and the last input is not an operator
+	if (numAndOps.join('').length >= MAX_DIGITS-1) return false;
+	
+	// an operator must be proceeded by a number
+	if ( numAndOps[numAndOps.length-1] == '' ) return false;
+
+	// when valid handle the operator
+	numAndOps.push(operator);					// add the operator into a new array element
+	numAndOps[numAndOps.length] = '';
+	return true;
+}
+
+var validNumber = function(val){
+	//console.log('valid number');
+	// limit the input so the display does not overflow
+	if (numAndOps.join('').length >= MAX_DIGITS) return false;
+
+	// if initial 0 is followed by a zero, cancel
+	if ( (val === '0') && (numAndOps[numAndOps.length-1] === '0') ) return false;
+
+	// if the inital 0 is present, remove it, from the array
+	if ( (val > '0') && (numAndOps[numAndOps.length-1] === '0') ) numAndOps[numAndOps.length-1] = '';
+
+	// when valid handle the number
+	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
+	return true;
+}
+
+var dotAllowed = function() {
+	// limit the input so the display does not overflow and the last input is not a dot
+	if (numAndOps.join('').length >= MAX_DIGITS-1) return false;
+
+	// return false when a dot is already present
+	if ( /[.]/.test(numAndOps[numAndOps.length-1]) ) return false;
+	
+	// last element of the array is assigned
+	var currentInput = numAndOps[numAndOps.length-1];
+	if (currentInput === '') return false; 
+	
+	// passed all checks, add . to the array and return true
+	numAndOps[numAndOps.length-1] += '.';
+	return true;
+}
+
+// display function
+
+var display = function(){
+	//document.getElementById('display').textContent = numAndOps.join('');
+	$('#display').text(numAndOps.join(''));
+	console.log(numAndOps);
+}
+
+// operator functions
+var add = function(addMe){
+	outcome += parseFloat(addMe);
+	console.log(outcome);
+}	
+
+var subtract = function(subtractMe){
+	outcome -= parseFloat(subtractMe);
+	console.log(outcome);
+}
+
+var multiply = function(multiplyBy){
+	outcome *= parseFloat(multiplyBy);
+	console.log(outcome);
+}
+
+var divide = function(divideBy){
+	outcome /= parseFloat(divideBy);
+	console.log(outcome);
+}
+
+var plus_minus = function(){
+	var replace = numAndOps[numAndOps.length-1];
+	var replaceWith;
+
+	// Operator check, the op procedure adds ''
+	if ( replace == '' ) return false;
+	if ( Number(replace) == 0 ) return false;
+	//replace = toFloatNumber(replace);
+
+	// Proceed with a valid number
+	if ( replace > 0 ) replaceWith = '-'+ replace;
+	else replaceWith = replace.slice(1,replace.length);;
+
+	// replace current value
+	numAndOps[numAndOps.length-1] = replaceWith;
+	console.log(numAndOps);
+	return true;
+}
+
+// special action functions
+var ac = function() {
+	//document.getElementById('display').textContent = '0';
+	$('#display').text('0');
+	clear(true);			// clear_all
+}
+
+var cce = function() {
+	// take the last input from the screen and clear it
+	if ( numAndOps.length === 1 ) numAndOps[numAndOps.length-1] = '0';
+	else numAndOps[numAndOps.length-1] = '';
+}
+
+var clear = function(all){
+	// initialize / reset values
+	numAndOps.length = 0;
+	if ( all ) numAndOps[0] = '0';					// AC is pressed or initial start-up
+	else numAndOps[0] = outcome.toString();			// used when = is pressed
+	outcome = 0;
+}
+
+var calculate = function() {
+	// When at least two numbers are available, proceed, else return
+	if (numAndOps.length <= 2 ) return false;
+	if ( numAndOps[numAndOps.length-1] == '' ) numAndOps[numAndOps.length-1] = 0;
+	var op;
+	var nextValue;
+	// assign outcome with the first value
+	outcome = parseFloat(numAndOps.shift());
+	while (numAndOps.length > 0) {
+		op = numAndOps.shift();
+		nextValue = parseFloat(numAndOps.shift());
+		switch(op){
+			case '+': 
+				add(nextValue);
+				break;
+			case '-': 
+				subtract(nextValue);
+				break;
+			case '×':
+				multiply(nextValue);
+				break;
+			case '÷':
+				divide(nextValue);
+				break;
+		}
+	}
+	// No need to deal with large outcome int numbers as the display input is limited
+	// Deal with to large float numbers, digits behind the dot.
+	var strOutcome = outcome.toString();
+	if ( ( /./.test(strOutcome) ) && ( strOutcome.length >= MAX_DIGITS ) ) {
+		outcome += outcome.subString(0, MAX_DIGITS);
+	}
+	clear();
+	return true;
+}
+
+// initialize values to start with a clean app
+clear(true);
+</script>
+
+<script id="jsbin-source-html" type="text/html"><!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Calculator build with HTML, CSS, JS | Roy Scheffers</title>
+<\!-- Required meta tags always come first -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<link type="text/css" rel="stylesheet" href="style.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+		</div>
+		<div id="main">
+			<div class="calculator">
+				<span class="logo"></span>
+				<div class="solar inlay"></div>
+				<div id="display" class="inlay">0</div>
+
+				<span class="button clear">AC</span>
+				<span class="button">C/CE</span>
+				<span class="button operator">+/-</span>
+				<span class="button operator">&divide;</span>
+
+				<span class="button">7</span>
+				<span class="button">8</span>
+				<span class="button">9</span>
+				<span class="button operator">&#xd7;</span>
+
+				<span class="button">4</span>
+				<span class="button">5</span>
+				<span class="button">6</span>
+				<span class="button operator">-</span>
+
+				<span class="button">1</span>
+				<span class="button">2</span>
+				<span class="button">3</span>
+				<span class="button operator">+</span>
+
+
+				<span class="button">0</span>
+				<span class="button">.</span>
+				<span class="button operator two-columns">=</span>
+
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="container">
+		Advanced assignment of the Front End Developer curriculum on FreeCodeCamp |<a href="https://www.freecodecamp.com/rscheffers82" target="_blank">Roy Scheffers</a>
+		</div>
+	</footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"><\/script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"><\/script>
+	<script type="text/javascript" src="main_script.js"><\/script>
 </body>
+</html>
+</script>
+
+<script id="jsbin-source-css" type="text/css">/* Stylesheet for Calculator App */
+/*
+/  Font credits for Sizenko Alexander
+/  The fonts Digital-7
+/  http://www.styleseven.com
+*/
+
+/*Opera Fix*/
+body:before {
+  content:"";
+  height:100%;
+  float:left;
+  width:0;
+  margin-top:-32767px;
+}
+
+/* part of the body / wrapper / footer styling */
+
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+#main {overflow:auto; padding-bottom: 50px;}  /* must be same height as the footer */
+
+footer {
+  position: relative;
+  margin-top: -50px; /* negative value of footer height */
+  height: 50px;
+  clear:both;
+  /* The above is required for the sticky footer */
+	background-color: #123456;
+	color: #aaaaaa;
+	padding: 5px 20px 5px 20px;
+	text-align: center;
+}
+
+.footer-center{
+  display: table-cell;
+  vertical-align: middle;
+}
+footer a{
+  color: #ffffff;
+  padding: 2px 10px 2px 10px;
+  border-radius: 20px;
+}
+
+footer a:hover{
+  background-color: #113456;
+  color: #000000;
+  padding: 2px 10px 2px 10px;
+  text-decoration: inherit;
+}
+
+/*  Custom styling depending on the project */ 
+
+body{
+  font-size: 17px;
+  background-color: #5160DE;
+  background-image:
+    linear-gradient(
+      #BD7442,
+      #56351E 60%
+    );
+    
+}
+
+.calculator{
+  width: 275px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #a0a9a4; /* fall-back for older browsers */
+  /* Wen supported gradient top to bottom, #eaebed > #a0a9a4*/
+  background-image:
+    linear-gradient(
+      #eaebed, #a0a9a4 150px
+    );
+  border: 1px solid #3d4749;
+  border-radius: 20px;
+
+  -webkit-box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+  -moz-box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+  box-shadow: 1px 2px 8px 2px rgba(28,28,28,1);
+
+}
+
+.logo {
+  background-image: url('images/logo.png');
+  display: inline-block;
+  width: 110px;
+  height: 50px;
+  /*background-color: #a0a9a4;
+  border: 1px solid #010101; */
+}
+
+.solar {
+  display: inline-block;
+  float: right;
+  margin: 5px;
+  width: 100px;
+  height: 35px;
+  /*border: 1px solid #111111;*/
+  border-top: 1px solid #444444;
+  border-left: 1px solid #444444;
+  border-bottom: 2px solid #dddddd;
+  border-right: 2px solid #dddddd;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      #4a372e,
+      #4a372e 23px,
+      #5e544f,
+      #5e544f 25px
+    );
+}
+
+@font-face {
+ font-family: 'digital-7';
+ src: url('font/digital-7.ttf');
+ font-weight: normal;
+ font-style: normal;
+}
+
+#display{
+  font-family: 'digital-7', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.3em;
+  line-height: 1em;
+  margin: 0px 0px 10px 0px;
+  padding: 4px 5px;
+  color: #3d4749;
+  text-align: right;
+  overflow: hidden;
+  background-color: #89957d;
+  background-image: 
+    linear-gradient(
+      #89957d,
+      #919c86 10px
+    );
+}
+
+.inlay{
+  border-top: 1px solid #444444 !important;
+  border-left: 1px solid #444444 !important;
+  border-bottom: 2px solid #ddddee !important;
+  border-right: 2px solid #ddddee !important;
+}
+
+.button{
+  display: inline-block;
+  text-align: center;
+  margin: 5px 2px 0px 2px;
+  padding: 6px 0;
+  width: 50px;
+  max-height: 40px;
+  border: 1px solid #010101;
+  border-radius: 2px;
+  color: #fafafc;
+  background-color: #636967;
+  background-image: 
+    linear-gradient(
+      #fafafc, #636967 3px
+    );
+/* code for non select */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version */
+}
+
+.button:hover, 
+.button:focus{
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(219,218,192,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(219,218,192,1);
+  box-shadow: 0px 0px 3px 1px rgba(219,218,192,1);
+}
+
+.button:active{
+  background-color: #555b59;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #555b59 3px
+    );
+}
+
+.two-columns{
+  width: 110px;
+}
+
+.operator {
+  background-color: #98a19e;
+  background-image: 
+    linear-gradient(
+      #fafafc, #98a19e 3px
+    );
+}
+.operator:active{
+  background-color: #88918e;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #88918e 3px
+    );
+}
+
+.clear {
+  background-color: #c2383d;
+  background-image:
+    linear-gradient(
+      #fafafc, #c2383d 3px
+    );
+}
+
+.clear:active{
+  background-color: #b3373e;
+  background-image: 
+    linear-gradient(
+      #0a0a0a, #b3373e 3px
+    );
+}
+</script>
+
+<script id="jsbin-source-javascript" type="text/javascript">// Javascript
+
+// global vars
+var MAX_DIGITS = 20;		// Max digits to display
+var numAndOps = [];			// collection of numbers and operators
+var outcome;				// number; result of the calculation
+
+// input click function
+$('.button').on("click", function(e) {
+	var key = e.currentTarget.textContent;
+	handleInput(key);
+});
+
+// input key function
+$('body').keypress(function(e){
+	//console.log(e);
+	// Numbers 0 - 9
+	if ( (e.which >= 48) && (e.which <= 57) ) handleInput(String.fromCharCode(e.which));
+	var inputOptions = { 46: '.', 43: '+', 45: '-', 42: '×', 47: '÷', 13: '=', 8: 'C/EC' }
+	handleInput(inputOptions[e]);
+});
+
+// handling functions
+var handleInput = function(val){
+	
+	switch (val) {
+		//special cases
+		case 'AC': 
+			ac();
+			break;
+		case 'C/CE': 
+			cce(); display();
+			break;
+		case '=': 
+			if ( calculate() ) display();
+			break;
+		case '+/-': 
+			if ( plus_minus() ) display();
+			break;
+		case '.': 
+			if ( dotAllowed() ) display();
+			break;
+		// Operators
+		case '+':
+		case '-':
+		case '×':
+		case '÷':
+			if ( validOperator(val) ) display()
+			break;
+		// numbers
+		default: if ( validNumber(val) ) display();
+		break;
+	}
+}
+
+// validation functions //
+
+var validOperator = function(operator){
+	// limit the input so the display does not overflow and the last input is not an operator
+	if (numAndOps.join('').length >= MAX_DIGITS-1) return false;
+	
+	// an operator must be proceeded by a number
+	if ( numAndOps[numAndOps.length-1] == '' ) return false;
+
+	// when valid handle the operator
+	numAndOps.push(operator);					// add the operator into a new array element
+	numAndOps[numAndOps.length] = '';
+	return true;
+}
+
+var validNumber = function(val){
+	//console.log('valid number');
+	// limit the input so the display does not overflow
+	if (numAndOps.join('').length >= MAX_DIGITS) return false;
+
+	// if initial 0 is followed by a zero, cancel
+	if ( (val === '0') && (numAndOps[numAndOps.length-1] === '0') ) return false;
+
+	// if the inital 0 is present, remove it, from the array
+	if ( (val > '0') && (numAndOps[numAndOps.length-1] === '0') ) numAndOps[numAndOps.length-1] = '';
+
+	// when valid handle the number
+	numAndOps[numAndOps.length-1] += val;		// add the value to the last element of the array 
+	return true;
+}
+
+var dotAllowed = function() {
+	// limit the input so the display does not overflow and the last input is not a dot
+	if (numAndOps.join('').length >= MAX_DIGITS-1) return false;
+
+	// return false when a dot is already present
+	if ( /[.]/.test(numAndOps[numAndOps.length-1]) ) return false;
+	
+	// last element of the array is assigned
+	var currentInput = numAndOps[numAndOps.length-1];
+	if (currentInput === '') return false; 
+	
+	// passed all checks, add . to the array and return true
+	numAndOps[numAndOps.length-1] += '.';
+	return true;
+}
+
+// display function
+
+var display = function(){
+	//document.getElementById('display').textContent = numAndOps.join('');
+	$('#display').text(numAndOps.join(''));
+	console.log(numAndOps);
+}
+
+// operator functions
+var add = function(addMe){
+	outcome += parseFloat(addMe);
+	console.log(outcome);
+}	
+
+var subtract = function(subtractMe){
+	outcome -= parseFloat(subtractMe);
+	console.log(outcome);
+}
+
+var multiply = function(multiplyBy){
+	outcome *= parseFloat(multiplyBy);
+	console.log(outcome);
+}
+
+var divide = function(divideBy){
+	outcome /= parseFloat(divideBy);
+	console.log(outcome);
+}
+
+var plus_minus = function(){
+	var replace = numAndOps[numAndOps.length-1];
+	var replaceWith;
+
+	// Operator check, the op procedure adds ''
+	if ( replace == '' ) return false;
+	if ( Number(replace) == 0 ) return false;
+	//replace = toFloatNumber(replace);
+
+	// Proceed with a valid number
+	if ( replace > 0 ) replaceWith = '-'+ replace;
+	else replaceWith = replace.slice(1,replace.length);;
+
+	// replace current value
+	numAndOps[numAndOps.length-1] = replaceWith;
+	console.log(numAndOps);
+	return true;
+}
+
+// special action functions
+var ac = function() {
+	//document.getElementById('display').textContent = '0';
+	$('#display').text('0');
+	clear(true);			// clear_all
+}
+
+var cce = function() {
+	// take the last input from the screen and clear it
+	if ( numAndOps.length === 1 ) numAndOps[numAndOps.length-1] = '0';
+	else numAndOps[numAndOps.length-1] = '';
+}
+
+var clear = function(all){
+	// initialize / reset values
+	numAndOps.length = 0;
+	if ( all ) numAndOps[0] = '0';					// AC is pressed or initial start-up
+	else numAndOps[0] = outcome.toString();			// used when = is pressed
+	outcome = 0;
+}
+
+var calculate = function() {
+	// When at least two numbers are available, proceed, else return
+	if (numAndOps.length <= 2 ) return false;
+	if ( numAndOps[numAndOps.length-1] == '' ) numAndOps[numAndOps.length-1] = 0;
+	var op;
+	var nextValue;
+	// assign outcome with the first value
+	outcome = parseFloat(numAndOps.shift());
+	while (numAndOps.length > 0) {
+		op = numAndOps.shift();
+		nextValue = parseFloat(numAndOps.shift());
+		switch(op){
+			case '+': 
+				add(nextValue);
+				break;
+			case '-': 
+				subtract(nextValue);
+				break;
+			case '×':
+				multiply(nextValue);
+				break;
+			case '÷':
+				divide(nextValue);
+				break;
+		}
+	}
+	// No need to deal with large outcome int numbers as the display input is limited
+	// Deal with to large float numbers, digits behind the dot.
+	var strOutcome = outcome.toString();
+	if ( ( /./.test(strOutcome) ) && ( strOutcome.length >= MAX_DIGITS ) ) {
+		outcome += outcome.subString(0, MAX_DIGITS);
+	}
+	clear();
+	return true;
+}
+
+// initialize values to start with a clean app
+clear(true);</script></body>
 </html>
